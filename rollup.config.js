@@ -1,6 +1,6 @@
 import summary from "rollup-plugin-summary";
 import { terser } from "rollup-plugin-terser";
-import resolve from "@rollup/plugin-node-resolve";
+import resolve, { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import commonjs from "@rollup/plugin-commonjs";
 
@@ -20,6 +20,7 @@ export default {
   plugins: [
     replace({ "Reflect.decorate": "undefined" }),
     resolve(),
+    nodeResolve({ exportConditions: "production" }),
     commonjs(),
     terser({
       ecma: 2021,

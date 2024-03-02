@@ -43,7 +43,8 @@ export class OrdbitWalletCard extends LitElement {
       this.dispatchEvent(EWalletConnectFailed(data));
     }
 
-    this.dispatchEvent(EWalletConnectModalClosed({}));
+    // auto close modal is disabled
+    // this.dispatchEvent(EWalletConnectModalClosed({}));
   }
 
   private async _handleConnectWallet() {
