@@ -6,7 +6,7 @@
     <title>Ordbit Connect</title>
     <script
       type="module"
-      src="https://unpkg.com/ordbit-connect@1.1.0/umd/ordbit-wallet-connect.js"
+      src="https://unpkg.com/ordbit-connect@1.1.2/umd/ordbit-wallet-connect.js"
     ></script>
   </head>
   <body>
@@ -17,25 +17,27 @@
     <script>
       function attachListeners() {
         const element = document.getElementById("wallet-connect");
-        console.log("attached");
-        document.addEventListener("WALLET_CONNECT_SUCCESS", (event) => {
+
+        element.addEventListener("WALLET_CONNECT_SUCCESS", (event) => {
           const data = event.detail;
           console.log("success = ", data);
+          event.stopPropagation();
         });
 
-        document.addEventListener("WALLET_CONNECT_FAILED", (event) => {
+        element.addEventListener("WALLET_CONNECT_FAILED", (event) => {
           const data = event.detail;
           console.log("failed = ", data);
+          event.stopPropagation();
         });
 
-        document.addEventListener("WALLET_CONNECT_MODAL_CLOSED", (event) => {
+        element.addEventListener("WALLET_CONNECT_MODAL_CLOSED", (event) => {
           const data = event.detail;
           console.log("closed = ", data);
+          event.stopPropagation();
         });
       }
 
       window.onload = function () {
-        console.log("here");
         attachListeners();
       };
     </script>

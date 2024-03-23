@@ -21,13 +21,13 @@ You can install the package using yarn
 If you prefer to use a CDN, you can include [ordbit-connect] directly into your HTML file:
 
 ```
-<!-- Replace 'x.x.x' with the desired version number -->
+<!-- Replace 'x.x.x' with the desired version number,preferrably latest stable version -->
 <script type="module" src="https://unpkg.com/ordbit-connect@x.x.x/umd/ordbit-wallet-connect.js"></script>
 ```
 
 # Components
 
-The pacakge consists of the following components
+The package consists of the following components
 
 ## 1. ordbit-connect-button
 
@@ -45,15 +45,15 @@ The ordbit-connect-button component serves as an entry point for users to connec
 
 Developers can use the following CSS variables to customize the styling of the `ordbit-connect-button` component:
 
-- `--btn-bg-color`: Background color of the button. (Default: orange)
-- `--btn-border`: Border of the button. (Default: none)
-- `--btn-border-radius`: Border radius of the button. (Default: 1rem)
-- `--btn-box-shadow`: Box shadow of the button. (Default: 0 0 5px #000)
-- `--btn-width`: Width of the button. (Default: 10rem)
-- `--btn-height`: Height of the button. (Default: 3rem)
-- `--btn-modal-backdrop-bg`: Background color of the modal backdrop. (Default: none)
-- `--btn-modal-backdrop-border`: Border of the modal backdrop. (Default: none)
-- `--btn-modal-backdrop-color`: Color of the modal backdrop. (Default: none)
+- `--btn-bg-color`: Background color of the button. (Default: `orange`)
+- `--btn-border`: Border of the button. (Default: `none`)
+- `--btn-border-radius`: Border radius of the button. (Default: `1rem`)
+- `--btn-box-shadow`: Box shadow of the button. (Default: `0 0 5px #000`)
+- `--btn-width`: Width of the button. (Default: `10rem`)
+- `--btn-height`: Height of the button. (Default: `3rem`)
+- `--btn-modal-backdrop-bg`: Background color of the modal backdrop. (Default: `none`)
+- `--btn-modal-backdrop-border`: Border of the modal backdrop. (Default: `none`)
+- `--btn-modal-backdrop-color`: Color of the modal backdrop. (Default: `none`)
 
 ## 2. ordbit-connect-modal
 
@@ -92,19 +92,20 @@ Developers can listen for the following events to perform further operations. Th
 
 Developers can use the following CSS variables to customize the styling of the `ordbit-connect-modal` component:
 
-- `--connect-wallet-modal-border`: Border of the modal.
-- `--connect-wallet-modal-bg`: Background image of the modal.
-- `--connect-wallet-modal-bg-color`: Background color of the modal.
-- `--connect-wallet-modal-heading-font-size`: Font size of the modal heading.
-- `--connect-wallet-modal-font-family`: Font family of the modal text.
-- `--connect-wallet-modal-heading-font-color`: Font color of the modal heading.
-- `--connect-wallet-modal-font-color`: Font color of the modal text.
+- `--connect-wallet-modal-border`: Border of the modal. (Default: `none`)
+- `--connect-wallet-modal-bg`: Background image of the modal. (Default: `none`)
+- `--connect-wallet-modal-bg-color`: Background color of the modal. (Default: `none`)
+- `--connect-wallet-modal-bg-color`: Background color of the modal with alpha transparency. (Default: `rgba(10, 10, 10, 0.8)`)
+- `--connect-wallet-modal-heading-font-size`: Font size of the modal heading. (Default: `1.5rem`)
+- `--connect-wallet-modal-font-family`: Font family of the modal text. (Default: `Calibri`)
+- `--connect-wallet-modal-heading-font-color`: Font color of the modal heading. (Default: `#fff`)
+- `--connect-wallet-modal-font-color`: Font color of the modal text. (Default: `#fff`)
 
 ### Example
 
 ```javascript
 element.addEventListener("WALLET_CONNECT_MODAL_CLOSED", () => {
-  // Handle modal closed event
+  console.error("Wallet modal closed");
 });
 
 element.addEventListener("WALLET_CONNECT_FAILED", (error) => {
@@ -148,25 +149,27 @@ You can take the below code as reference to get started.
     <script>
       function attachListeners() {
         const element = document.getElementById("wallet-connect");
-        console.log("attached");
-        document.addEventListener("WALLET_CONNECT_SUCCESS", (event) => {
+
+        element.addEventListener("WALLET_CONNECT_SUCCESS", (event) => {
           const data = event.detail;
           console.log("success = ", data);
+          event.stopPropagation();
         });
 
-        document.addEventListener("WALLET_CONNECT_FAILED", (event) => {
+        element.addEventListener("WALLET_CONNECT_FAILED", (event) => {
           const data = event.detail;
           console.log("failed = ", data);
+          event.stopPropagation();
         });
 
-        document.addEventListener("WALLET_CONNECT_MODAL_CLOSED", (event) => {
+        element.addEventListener("WALLET_CONNECT_MODAL_CLOSED", (event) => {
           const data = event.detail;
           console.log("closed = ", data);
+          event.stopPropagation();
         });
       }
 
       window.onload = function () {
-        console.log("here");
         attachListeners();
       };
     </script>

@@ -1,7 +1,7 @@
 {
   "name": "ordbit-connect",
-  "version": "1.1.1",
-  "description": "A simple web component",
+  "version": "1.1.2",
+  "description": "A suit web components for web3 applications",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "type": "module",
@@ -37,12 +37,17 @@
     "web-components",
     "lit-element",
     "typescript",
-    "lit"
+    "lit",
+    "web3",
+    "wallet-connect",
+    "wallet",
+    "bitcoin",
+    "btc",
+    "ordinals"
   ],
   "author": "Ordbit",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@rollup/plugin-commonjs": "^25.0.7",
     "lit": "^3.0.0",
     "sats-connect": "0.5.0"
   },
@@ -51,6 +56,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
     "@custom-elements-manifest/analyzer": "^0.6.3",
     "@open-wc/testing": "^3.1.5",
+    "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^5.0.2",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
