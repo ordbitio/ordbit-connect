@@ -3,9 +3,41 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Lit Starter Kit</title>
+    <title>Ordbit Connect</title>
+    <script
+      type="module"
+      src="https://unpkg.com/ordbit-connect@1.1.0/umd/ordbit-wallet-connect.js"
+    ></script>
   </head>
   <body>
-    <a href="/dev/index.html">Component Demo</a>
+    <ordbit-connect-button id="wallet-connect"
+      >Connect Wallet</ordbit-connect-button
+    >
+
+    <script>
+      function attachListeners() {
+        const element = document.getElementById("wallet-connect");
+        console.log("attached");
+        document.addEventListener("WALLET_CONNECT_SUCCESS", (event) => {
+          const data = event.detail;
+          console.log("success = ", data);
+        });
+
+        document.addEventListener("WALLET_CONNECT_FAILED", (event) => {
+          const data = event.detail;
+          console.log("failed = ", data);
+        });
+
+        document.addEventListener("WALLET_CONNECT_MODAL_CLOSED", (event) => {
+          const data = event.detail;
+          console.log("closed = ", data);
+        });
+      }
+
+      window.onload = function () {
+        console.log("here");
+        attachListeners();
+      };
+    </script>
   </body>
 </html>
